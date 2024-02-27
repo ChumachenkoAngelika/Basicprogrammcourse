@@ -1,0 +1,8 @@
+# ninja log v5
+61	454	7307363718059385	CMakeFiles/laba.dir/main.c.obj	68f092dc369651a0
+775	1026	7307363723737838	laba.exe	3d0803770924cca8
+77	543	7307363718942454	CMakeFiles/laba.dir/lab/ordered_array.c.obj	a6bd950626be2caf
+506	686	7307363720224280	CMakeFiles/laba.dir/lab/bitset.c.obj	2f8b1c83694ac913
+45	506	7307363718308433	CMakeFiles/laba.dir/lab/array.c.obj	b565fd0fa9a2d6dc
+543	775	7307363720974028	CMakeFiles/laba.dir/lab/unordered_array.c.obj	e425d36459459a79
+455	768	7307363720918944	CMakeFiles/laba.dir/test.c.obj	181721a5fbd91a14

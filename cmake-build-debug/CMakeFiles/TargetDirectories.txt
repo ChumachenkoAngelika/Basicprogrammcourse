@@ -1,0 +1,3 @@
+C:/Users/chuma/OneDrive/Рабочий стол/laba/cmake-build-debug/CMakeFiles/laba.dir
+C:/Users/chuma/OneDrive/Рабочий стол/laba/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/chuma/OneDrive/Рабочий стол/laba/cmake-build-debug/CMakeFiles/rebuild_cache.dir
