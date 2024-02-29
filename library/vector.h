@@ -1,8 +1,26 @@
-//
-// Created by chuma on 27.02.2024.
-//
 
-#ifndef LABA_VECTOR_H
-#define LABA_VECTOR_H
 
-#endif //LABA_VECTOR_H
+#ifndef LIBRARY_VECTOR_H
+#define LIBRARY_VECTOR_H
+#include <corecrt.h>
+
+typedef struct vector {
+    int *data;
+    size_t size;
+    size_t capacity;
+}vector;
+
+vector createVector(size_t n);
+
+
+void reserve(vector *v, size_t newCapacity);
+
+void clear(vector *v);
+
+
+void shrinkToFit(vector *v);
+
+void deleteVector(vector *v);
+
+
+#endif //LIBRARY_VECTOR_H

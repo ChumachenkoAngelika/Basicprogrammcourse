@@ -3,7 +3,7 @@ project(laba C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(library main.c
+add_executable(laba main.c
         library/array.c
         library/bitset.c
         library/ordered_array.c
