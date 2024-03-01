@@ -48,7 +48,10 @@ void test_ordered_array_set_symmetricDifference();
 void test_ordered_array_set_complement1();
 void test_ordered_array_set_complement2();
 void test_ordered_array_set_complement();
-
+void test_atVector_notEmptyVector();
+void test_atVector_requestToLastElement();
+void test_back_oneElementInVector();
+void test_front_oneElementInVector();
 
 
 

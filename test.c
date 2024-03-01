@@ -3,6 +3,7 @@
 #include "library/bitset.h"
 #include <stdlib.h>
 #include "test.h"
+#include "library/vector.h"
 
 void test(){
     test_bitset_union();
@@ -651,3 +652,55 @@ void test_ordered_array_set_complement(){
     test_ordered_array_set_complement1();
     test_ordered_array_set_complement2();
 }
+
+void test_atVector_notEmptyVector() {
+    int arr[] = {1, 2, 3, 4, 5};
+    vector myVector = {arr, 5};
+
+
+    int* result = atVector(&myVector, 3);
+    if (result != NULL) {
+        printf("Element at index 3: %d\n", *result);
+    } else {
+        printf("Index out of range.\n");
+    }
+}
+
+void test_atVector_requestToLastElement() {
+    int arr[] = {6, 5, 4, 3, 2,1};
+    vector myVector = {arr, 6};
+
+
+    int* result = back(&myVector);
+    if (result != NULL) {
+        printf("Last element - %d\n", *result);
+    } else {
+        printf("Vector is empty.\n");
+    }
+}
+
+void test_back_oneElementInVector() {
+    int arr[] = {42};
+    vector myVector = {arr, 1};
+
+    int* result = back(&myVector);
+    if (result != NULL) {
+        printf("Last element - %d\n", *result);
+    } else {
+        printf("Vector is empty.\n");
+    }
+}
+
+void test_front_oneElementInVector() {
+    int arr[] = {42};
+    vector myVector = {arr, 1};
+
+
+    int* result = front(&myVector);
+    if (result != NULL) {
+        printf("First element - %d\n", *result);
+    } else {
+        printf("Vector is empty.\n");
+    }
+}
+//последние тесты

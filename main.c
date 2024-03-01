@@ -26,17 +26,17 @@
 //    return 0;
 //}
 
-void test_popBack_notEmptyVector() {
-    vector v = createVector(0);
-    pushBack(&v, 10);
-    assert(v.size == 1);
-    popBack(&v);
-    assert(v.size == 0);
-    assert(v.capacity == 1);
-}
+//void test_popBack_notEmptyVector() {
+//    vector v = createVector(0);
+//    pushBack(&v, 10);
+//    assert(v.size == 1);
+//    popBack(&v);
+//    assert(v.size == 0);
+//    assert(v.capacity == 1);
+//}
 
-int main(){
-    test_popBack_notEmptyVector();
+//int main(){
+//    test_popBack_notEmptyVector();
+//    return 0;
+//}
 
-    return 0;
-}

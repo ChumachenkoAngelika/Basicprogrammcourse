@@ -91,5 +91,33 @@ void popBack(vector *v){
     }
 }
 
+int* atVector(vector* v, size_t index) {
+    if (index < v->size) {
+        return &(v->data[index]);
+    } else {
+        fprintf(stderr, "IndexError: a[%zu] is not exists\n", index);
+        //%zu принимает переменную типа sizet
+        return NULL;
+    }
+}
+
+int* back(vector* v) {
+    if (v->size > 0) {
+        return &(v->data[v->size - 1]);
+    } else {
+        return NULL;
+    }
+}
+
+
+int* front(vector* v) {
+    if (v->size > 0) {
+        return &(v->data[0]);
+    } else {
+        return NULL;
+    }
+}
+
+
 
 
