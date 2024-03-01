@@ -3,6 +3,7 @@
 #include <string.h>
 #include "vector.h"
 #include <stdlib.h>
+#include <stdbool.h>
 
 vector createVector(size_t n){
     vector newVector;
@@ -42,6 +43,7 @@ void clear(vector *v){
 
 void shrinkToFit(vector *v) {
     v->data = realloc(v->data, v->size * sizeof(int));
+    v->capacity = v->size;
 }
 
 
@@ -51,6 +53,43 @@ void deleteVector(vector *v){
     }
     free(v);
 }
-git add .
-git commit -m "memory usage of vector"
-git push origin master
+
+bool isEmpty(vector *v){
+    return v->size == 0;
+}
+
+
+bool isFull(vector *v){
+    return v->size == v->capacity;
+}
+
+int getVectorValue(vector *v, size_t i){
+    return v->data[i];
+}
+
+
+void pushBack(vector *v, int x){
+    if (v->size == v->capacity && v->size != 0){
+        reserve(v, v->capacity*2);
+        v->capacity = v->capacity*2;
+    }
+    if (v->capacity == 0){
+        reserve(v, 1);
+        v->capacity = 1;
+    }
+    v->data[v->size] = x;
+    v->size++;
+}
+
+
+void popBack(vector *v){
+    if (v->size ==0){
+        fprintf(stderr, "bug!!ERROR!!Warning\n");
+        exit(1);
+    }else{
+        v->size--;
+    }
+}
+
+
+
