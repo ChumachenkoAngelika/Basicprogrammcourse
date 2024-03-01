@@ -80,7 +80,7 @@ void pushBack(vector *v, int x){
     v->data[v->size] = x;
     v->size++;
 }
-
+//тмовталд
 
 void popBack(vector *v){
     if (v->size ==0){
