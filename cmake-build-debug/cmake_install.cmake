@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/chuma/OneDrive/Рабочий стол/laba
+# Install script for directory: C:/Users/chuma/CLionProjects/laba
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/chuma/OneDrive/Рабочий стол/laba/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/chuma/CLionProjects/laba/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
