@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+
 vector createVector(size_t n){
     vector newVector;
 
@@ -26,11 +27,11 @@ void freeVector(vector* vec){
     vec->capacity = 0;
 }
 
+
 void reserve(vector *v, size_t newCapacity){
     if(newCapacity == 0){
         free(v->data);
-        v->size = 0;
-        v->capacity = 0;
+        v->size = v->capacity = 0;
     }
 }
 
@@ -69,27 +70,30 @@ int getVectorValue(vector *v, size_t i){
 
 
 void pushBack(vector *v, int x){
-    if (v->size == v->capacity && v->size != 0){
-        reserve(v, v->capacity*2);
-        v->capacity = v->capacity*2;
+    if (v->size == v->capacity){
+        size_t newCapacity = (v->capacity == 0) ? 1 : v->capacity * 2;
+        reserve(v, newCapacity);
+        v->capacity = newCapacity;
     }
-    if (v->capacity == 0){
-        reserve(v, 1);
-        v->capacity = 1;
-    }
-    v->data[v->size] = x;
-    v->size++;
+
+    v->data[v->size++] = x;
 }
+
 //тмовталд
 
-void popBack(vector *v){
-    if (v->size ==0){
-        fprintf(stderr, "bug!!ERROR!!Warning\n");
+void popBack(vector *v) {
+    if (v == NULL) {
+        fprintf(stderr, "Null pointer exception\n");
         exit(1);
-    }else{
+    }
+
+    if (v->size == 0) {
+        fprintf(stderr, "bug!!ERROR!!Warning\n");
+    } else {
         v->size--;
     }
 }
+
 
 int* atVector(vector* v, size_t index) {
     if (index < v->size) {
@@ -101,13 +105,21 @@ int* atVector(vector* v, size_t index) {
     }
 }
 
+
 int* back(vector* v) {
+    if (v == NULL) {
+        fprintf(stderr, "Null pointer exception\n");
+        return NULL;
+    }
+
     if (v->size > 0) {
         return &(v->data[v->size - 1]);
     } else {
+        fprintf(stderr, "Vector empty\n");
         return NULL;
     }
 }
+
 
 
 int* front(vector* v) {
@@ -117,7 +129,7 @@ int* front(vector* v) {
         return NULL;
     }
 }
-
+//рефакторинг вроде сделала :) как смогла
 
 
 
