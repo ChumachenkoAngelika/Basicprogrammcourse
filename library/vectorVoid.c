@@ -1,21 +1,21 @@
 #include <malloc.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdbool.h>
+
 #include "vectorVoid.h"
 
-// создание вектора
+// Создание вектора
 vectorVoid createVectorV(size_t n, size_t baseTypeSize) {
     vectorVoid vecV;
-    if (n == 0) {
+    if(n == 0) {
         vecV.data = NULL;
         vecV.size = 0;
         vecV.capacity = 0;
         vecV.baseTypeSize = baseTypeSize;
         return vecV;
     }
-    vecV.data = (int *) malloc(n * sizeof(int));
-    if (vecV.data == NULL) {
+    vecV.data = malloc(n * sizeof(int));
+    if(vecV.data == NULL) {
         fprintf(stderr, "bad alloc");
         exit(1);
     }
@@ -25,35 +25,40 @@ vectorVoid createVectorV(size_t n, size_t baseTypeSize) {
     return vecV;
 }
 
-// изменяет количество памяти
+// Изменение количества памяти
 void reserveV(vectorVoid *v, size_t newCapacity) {
-    if (newCapacity > v->capacity) {
-        int *newData = (int *) realloc(v->data, newCapacity * v->baseTypeSize);
+    if (newCapacity == 0) {
+        free(v->data); // Освобождаем память, если новая вместимость равна 0
+        v->data = NULL;
+        v->size = 0;
+        v->capacity = 0;
+    } else if (newCapacity > v->capacity) {
+        void *newData = realloc(v->data, newCapacity * v->baseTypeSize);
         if (newData == NULL) {
             fprintf(stderr, "Failed to reallocate memory for the vector\n");
             exit(1);
         }
         v->data = newData;
         v->capacity = newCapacity;
-    } else if (newCapacity == 0) {
-        v->data = NULL;
-    } else if (newCapacity < v->size) {
-        v->size = newCapacity;
+        if (newCapacity < v->size) {
+            v->size = newCapacity; // Уменьшаем размер, если новая вместимость меньше текущего размера
+        }
     }
 }
 
-// освобождает память, выделенную под неиспользуемые элементы
+
+// Освобождает память, выделенную под неиспользуемые элементы
 void shrinkToFitV(vectorVoid *v) {
-    *v->data = (int *) realloc(v->data, v->size * v->baseTypeSize);
+    v->data = realloc(v->data, v->size * v->baseTypeSize);
     v->capacity = v->size;
 }
 
-// удаляет элементы из контейнера, но не освобождает выделенную память
+// Удаление элементов из контейнера, но не освобождает выделенную память
 void clearV(vectorVoid *v) {
     v->size = 0;
 }
 
-// освобождает память, выделенную вектору
+// Освобождает память, выделенную вектору
 void deleteVectorV(vectorVoid *v) {
     free(v->data);
     v->capacity = 0;
@@ -61,47 +66,49 @@ void deleteVectorV(vectorVoid *v) {
     v->data = NULL;
 }
 
-// true если пустой
+// Проверка, является ли вектор пустым
 bool isEmptyV(vectorVoid *v) {
     return v->size == 0;
 }
 
-// true если полный
+// Проверка, является ли вектор полным
 bool isFullV(vectorVoid *v) {
     return v->size == v->capacity;
 }
 
-// записывает по адресу destination index-ый элемент вектора v
+// Запись значения по адресу destination в index-ый элемент вектора v
 void getVectorValueV(vectorVoid *v, size_t index, void *destination) {
     char *source = (char *) v->data + index * v->baseTypeSize;
     memcpy(destination, source, v->baseTypeSize);
 }
 
-// записывает на index-ый элемент вектора v значение, расположенное по адресу source
+// Запись значения по адресу source в index-ый элемент вектора v
 void setVectorValueV(vectorVoid *v, size_t index, void *source) {
     char *destination = (char *) v->data + index * v->baseTypeSize;
     memcpy(destination, source, v->baseTypeSize);
 }
 
-// удаляет последний элемент из вектора
+// Удаление последнего элемента из вектора
 void popBackV(vectorVoid *v) {
-    if (v->size == 0) {
+    if(v->size == 0) {
         fprintf(stderr, "vector is empty");
         exit(1);
     }
     v->size--;
 }
 
+// Добавление элемента в конец вектора
 void pushBackV(vectorVoid *v, void *source) {
     if (v == NULL || source == NULL) {
         return;
     }
-    if (v->capacity == 0) {
-        reserveV(v, 1);
-    } else if (v->capacity == v->size) {
-        reserveV(v, v->capacity * 2);
+
+    if (v->capacity == v->size) {
+        size_t newCapacity = (v->capacity == 0) ? 1 : (v->capacity * 2);
+        reserveV(v, newCapacity);
     }
+
     setVectorValueV(v, v->size, source);
     v->size++;
 }
-//jjjjj
+

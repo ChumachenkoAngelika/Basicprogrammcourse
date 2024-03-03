@@ -2,6 +2,8 @@
 #ifndef LABA_VECTORVOID_H
 #define LABA_VECTORVOID_H
 #include <limits.h>
+#include <stdbool.h>
+
 
 typedef struct vectorVoid {
     void *data; // указатель на нулевой элемент вектора
