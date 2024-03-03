@@ -11,4 +11,6 @@ add_executable(laba main.c
         test.c
         test.h
         library/vector.h
-        library/vector.c)
+        library/vector.c
+        library/vectorVoid.c
+        library/vectorVoid.h)

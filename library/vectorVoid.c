@@ -61,3 +61,47 @@ void deleteVectorV(vectorVoid *v) {
     v->data = NULL;
 }
 
+// true если пустой
+bool isEmptyV(vectorVoid *v) {
+    return v->size == 0;
+}
+
+// true если полный
+bool isFullV(vectorVoid *v) {
+    return v->size == v->capacity;
+}
+
+// записывает по адресу destination index-ый элемент вектора v
+void getVectorValueV(vectorVoid *v, size_t index, void *destination) {
+    char *source = (char *) v->data + index * v->baseTypeSize;
+    memcpy(destination, source, v->baseTypeSize);
+}
+
+// записывает на index-ый элемент вектора v значение, расположенное по адресу source
+void setVectorValueV(vectorVoid *v, size_t index, void *source) {
+    char *destination = (char *) v->data + index * v->baseTypeSize;
+    memcpy(destination, source, v->baseTypeSize);
+}
+
+// удаляет последний элемент из вектора
+void popBackV(vectorVoid *v) {
+    if (v->size == 0) {
+        fprintf(stderr, "vector is empty");
+        exit(1);
+    }
+    v->size--;
+}
+
+void pushBackV(vectorVoid *v, void *source) {
+    if (v == NULL || source == NULL) {
+        return;
+    }
+    if (v->capacity == 0) {
+        reserveV(v, 1);
+    } else if (v->capacity == v->size) {
+        reserveV(v, v->capacity * 2);
+    }
+    setVectorValueV(v, v->size, source);
+    v->size++;
+}
+//jjjjj
